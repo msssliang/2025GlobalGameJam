@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
     [field: SerializeField]
-    public PlayerEnum player { get; private set; }
+    public bool player2 { get; private set; }
     [field: SerializeField]
     public float moveAmount { get; private set; }
     [field: SerializeField]
@@ -16,65 +14,53 @@ public class PlayerController : MonoBehaviour
     public Vector3 left { get; private set; }
     [field: SerializeField]
     public Vector3 back { get; private set; }
-    [field: SerializeField]
-    public UnityEvent<Vector2> OnMove { get; private set; }
     void Update()
     {
-        switch (player)
+        if (player2)
         {
-            case PlayerEnum.Player1:
-                player1Control();
-                break;
-            case PlayerEnum.Player2:
-                player2Control();
-                break;
+            player2Control();
+        }
+        else
+        {
+            player1Control();
         }
     }
     void player1Control()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Move(forward);
+            transform.position += forward * moveAmount;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Move(back);
+            transform.position += back * moveAmount;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Move(left);
+            transform.position += left * moveAmount;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Move(right);
+            transform.position += right * moveAmount;
         }
     }
     void player2Control()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Move(forward);
+            transform.position += forward * moveAmount;
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Move(back);
+            transform.position += back * moveAmount;
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Move(left);
+            transform.position += left * moveAmount;
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Move(right);
+            transform.position += right * moveAmount;
         }
-    }
-    void Move(Vector3 direction)
-    {
-        GameManager gameManager = FindFirstObjectByType<GameManager>();
-        Vector3 moveTarget = direction * moveAmount + transform.position;
-        Vector2 checkPosition = new Vector2(moveTarget.x, moveTarget.z);
-        if (gameManager.CheckMovable(checkPosition) == false) return;
-        transform.position += direction * moveAmount;
-        OnMove?.Invoke(new Vector2(transform.position.x, transform.position.z));
     }
 }

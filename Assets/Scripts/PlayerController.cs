@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField]
     public Animator Animator { get; private set; }
     public bool Controllable { get; set; } = false;
+
+    public AudioSource audioSource;
     void Update()
     {
         switch (player)
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
             pressTime = 0;
             Animator.SetBool("idle", true);
             Animator.SetBool("walk", false);
+            audioSource.Play();
         }
     }
     void player2Control()
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
             pressTime = 0;
             Animator.SetBool("idle", true);
             Animator.SetBool("walk", false);
+            audioSource.Play();
         }
     }
     float pressTime = 0;

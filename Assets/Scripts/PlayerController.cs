@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<Vector2> OnMove { get; private set; }
     [field: SerializeField]
     public Animator Animator { get; private set; }
+    public bool Controllable { get; set; } = false;
     void Update()
     {
         switch (player)
@@ -102,7 +103,10 @@ public class PlayerController : MonoBehaviour
         pressTime += Time.deltaTime;
         if (pressTime < PressTime) return;
         transform.position += direction * moveAmount;
-        OnMove?.Invoke(new Vector2(transform.position.x, transform.position.z));
+        if (Controllable)
+        {
+            OnMove?.Invoke(new Vector2(transform.position.x, transform.position.z));
+        }
         pressTime = 0;
     }
 }

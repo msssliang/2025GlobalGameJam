@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
                 CurrentTimer = 4;
                 break;
             case GameState.Playing:
+                PlayerController[] players = FindObjectsByType<PlayerController>(FindObjectsSortMode.InstanceID);
+                foreach (var player in players)
+                {
+                    player.Controllable = true;
+                }
                 CurrentTimer = GameTime;
                 break;
             case GameState.Pause:

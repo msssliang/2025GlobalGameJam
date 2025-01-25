@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 back { get; private set; }
     [field: SerializeField]
     public UnityEvent<Vector2> OnMove { get; private set; }
+    [field: SerializeField]
+    public Animator Animator { get; private set; }
     void Update()
     {
         switch (player)
@@ -56,6 +58,8 @@ public class PlayerController : MonoBehaviour
             Input.GetKeyUp(KeyCode.D))
         {
             pressTime = 0;
+            Animator.SetBool("idle", true);
+            Animator.SetBool("walk", false);
         }
     }
     void player2Control()
@@ -82,11 +86,15 @@ public class PlayerController : MonoBehaviour
             Input.GetKeyUp(KeyCode.L))
         {
             pressTime = 0;
+            Animator.SetBool("idle", true);
+            Animator.SetBool("walk", false);
         }
     }
     float pressTime = 0;
     void Move(Vector3 direction)
     {
+        Animator.SetBool("idle", false);
+        Animator.SetBool("walk", true);
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         Vector3 moveTarget = direction * moveAmount + transform.position;
         Vector2 checkPosition = new Vector2(moveTarget.x, moveTarget.z);

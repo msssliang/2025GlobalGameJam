@@ -12,6 +12,8 @@ public class UpdateGameInfo : MonoBehaviour
     public Image Player2Bar { get; private set; }
     [field: SerializeField]
     public TextMeshProUGUI Timer { get; private set; }
+    [field: SerializeField]
+    public TextMeshProUGUI CountDown { get; private set; }
     void Update()
     {
         GameManager.GetCurrentScore(out int player1Score, out int player2Score);
@@ -19,6 +21,22 @@ public class UpdateGameInfo : MonoBehaviour
         Debug.Log($"Player1: {player1Score}, Player2: {player2Score} / {totalScore}");
         Player1Bar.fillAmount = (float)player1Score / totalScore;
         Player2Bar.fillAmount = (float)player2Score / totalScore;
-        Timer.text = GameManager.CurrentTimer.ToString("0");
+        if (GameManager.CurrentGameState == GameManager.GameState.Playing)
+        {
+            Timer.text = GameManager.CurrentTimer.ToString("0");
+        }
+        else
+        {
+            Timer.text = "";
+        }
+        if (GameManager.CurrentGameState == GameManager.GameState.CountDown)
+        {
+            if (GameManager.CurrentTimer > 3) return;
+            CountDown.text = GameManager.CurrentTimer.ToString("0");
+        }
+        else
+        {
+            CountDown.text = "";
+        }
     }
 }

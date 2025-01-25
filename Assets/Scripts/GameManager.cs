@@ -16,6 +16,14 @@ public class GameManager : MonoBehaviour
     public float GameTime { get; private set; }
     [field: SerializeField]
     public Vector2 FieldSize { get; private set; } = new Vector2(20, 20);
+    [field: SerializeField]
+    public AudioSource AudioSource { get; private set; }
+    [field: SerializeField]
+    public AudioClip BattleMusic { get; private set; }
+    [field: SerializeField]
+    public AudioClip GameOverMusic { get; private set; }
+    [field: SerializeField]
+    public AudioClip CountDownMusic { get; private set; }
     [Header("遊戲資訊")]
     [field: SerializeField]
     public float CurrentTimer { get; private set; }
@@ -54,9 +62,13 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.CountDown:
+                AudioSource.clip = CountDownMusic;
+                AudioSource.Play();
                 CurrentTimer = 4;
                 break;
             case GameState.Playing:
+                AudioSource.clip = BattleMusic;
+                AudioSource.Play();
                 PlayerController[] players = FindObjectsByType<PlayerController>(FindObjectsSortMode.InstanceID);
                 foreach (var player in players)
                 {
@@ -67,6 +79,18 @@ public class GameManager : MonoBehaviour
             case GameState.Pause:
                 break;
             case GameState.GameOver:
+                AudioSource.clip = GameOverMusic;
+                AudioSource.Play();
+                DisplayWinner displayWinner = FindFirstObjectByType<DisplayWinner>();
+                GetCurrentScore(out int player1, out int player2);
+                if (player1 > player2)
+                {
+                    displayWinner.ShowWinner(1);
+                }
+                else if (player1 <= player2)
+                {
+                    displayWinner.ShowWinner(2);
+                }
                 break;
         }
         CurrentGameState = state;

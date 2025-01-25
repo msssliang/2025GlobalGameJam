@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,26 @@ public class GameManager : MonoBehaviour
     {
         boundary = new Boundary(this, FieldSize);
         ChanageState(GameState.CountDown);
+    }
+    public void GetCurrentScore(out int player1, out int player2)
+    {
+        player1 = 0;
+        player2 = 0;
+        foreach (var bubble in bubbleGrid)
+        {
+            if (bubble.Value == null) continue;
+            PlayerEnum playerEnum =
+            bubble.Value.GetComponent<Bubble>().Player;
+            switch (playerEnum)
+            {
+                case PlayerEnum.Player1:
+                    player1++;
+                    break;
+                case PlayerEnum.Player2:
+                    player2++;
+                    break;
+            }
+        }
     }
     public void ChanageState(GameState state)
     {

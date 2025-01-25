@@ -1074,6 +1074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2265616651262689266, guid: e76cafe896fca5946957338c3d836401, type: 3}
+      propertyPath: <GameManager>k__BackingField
+      value: 
+      objectReference: {fileID: 2092546855}
     - target: {fileID: 6205413632128034445, guid: e76cafe896fca5946957338c3d836401, type: 3}
       propertyPath: m_Pivot.x
       value: 0

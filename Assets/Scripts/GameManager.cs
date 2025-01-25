@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         boundary = new Boundary(this, FieldSize);
+        Obstacle[] obstacles = FindObjectsByType<Obstacle>(FindObjectsSortMode.None);
+        foreach (var obstacle in obstacles)
+        {
+            AddObstacle(new Vector2(obstacle.transform.position.x, obstacle.transform.position.z));
+        }
+        Debug.Log($"Array Length: {obstacles.Length}");
         ChanageState(GameState.CountDown);
     }
     public void GetCurrentScore(out int player1, out int player2)
@@ -104,10 +110,14 @@ public class GameManager : MonoBehaviour
         }
         return true;
     }
-    public void AddObstacle(GameObject obstacle, Vector2 position)
+    public void AddObstacle(Vector2 position)
     {
         string key = position.ToString();
-        obstacleGrid.Add(key, obstacle);
+        if (obstacleGrid.ContainsKey(key)) return;
+        // GameObject instance = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        // instance.transform.position = new Vector3(position.x, 0, position.y);
+        // instance.GetComponent<Renderer>().material.color = Color.black;
+        obstacleGrid.Add(key, null);
     }
     public void AddBubble(GameObject bubble, Vector2 position)
     {

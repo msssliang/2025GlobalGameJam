@@ -8,7 +8,7 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 LocalOffset { get; private set; }
     void LateUpdate()
     {
-        transform.localPosition = Vector3.Lerp(transform.position, Player.position - LocalOffset, 0.1f);
+        transform.localPosition = Vector3.Lerp(transform.position, Player.position - LocalOffset, 9f);
         transform.LookAt(Player);
     }
 }

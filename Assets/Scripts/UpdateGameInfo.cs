@@ -12,8 +12,6 @@ public class UpdateGameInfo : MonoBehaviour
     public Image Player2Bar { get; private set; }
     [field: SerializeField]
     public TextMeshProUGUI Timer { get; private set; }
-    [field: SerializeField]
-    public TextMeshProUGUI CountDown { get; private set; }
     void Update()
     {
         GameManager.GetCurrentScore(out int player1Score, out int player2Score);
@@ -28,15 +26,6 @@ public class UpdateGameInfo : MonoBehaviour
         else
         {
             Timer.text = "";
-        }
-        if (GameManager.CurrentGameState == GameManager.GameState.CountDown)
-        {
-            if (GameManager.CurrentTimer > 3) return;
-            CountDown.text = GameManager.CurrentTimer.ToString("0");
-        }
-        else
-        {
-            CountDown.text = "";
         }
     }
 }

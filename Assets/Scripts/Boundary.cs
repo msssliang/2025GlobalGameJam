@@ -34,9 +34,6 @@ public class Boundary
     }
     void CreateObstacle(Vector3 position)
     {
-        GameObject instance = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        instance.transform.position = position;
-        instance.GetComponent<Renderer>().material.color = Color.black;
-        GameManager.AddObstacle(instance, new Vector2(position.x, position.z));
+        GameManager.AddObstacle(new Vector2(position.x, position.z));
     }
 }

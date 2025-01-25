@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(bubbleGrid[key]);
             }
-            Debug.Log($"Remove Bubble {key}");
             bubbleGrid.Remove(key);
         }
         bubbleGrid.Add(key, bubble);

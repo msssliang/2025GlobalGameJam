@@ -238,7 +238,6 @@ GameObject:
   m_Component:
   - component: {fileID: 532206106}
   - component: {fileID: 532206105}
-  - component: {fileID: 532206104}
   - component: {fileID: 532206103}
   - component: {fileID: 532206107}
   m_Layer: 0
@@ -292,14 +291,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &532206104
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532206102}
-  m_Enabled: 1
 --- !u!20 &532206105
 Camera:
   m_ObjectHideFlags: 0
@@ -543,6 +534,7 @@ GameObject:
   - component: {fileID: 968604224}
   - component: {fileID: 968604223}
   - component: {fileID: 968604225}
+  - component: {fileID: 968604226}
   m_Layer: 0
   m_Name: player_1
   m_TagString: Untagged
@@ -562,12 +554,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da67d65d8799cf45b3aa958284a825c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <player2>k__BackingField: 0
+  <player>k__BackingField: 0
   <moveAmount>k__BackingField: 1
   <forward>k__BackingField: {x: 0, y: 0, z: -1}
   <right>k__BackingField: {x: -1, y: 0, z: 0}
   <left>k__BackingField: {x: 1, y: 0, z: 0}
   <back>k__BackingField: {x: 0, y: 0, z: 1}
+  <OnMove>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 968604226}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: GenerateBubble
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &968604224
 Transform:
   m_ObjectHideFlags: 0
@@ -598,6 +605,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Camera>k__BackingField: {fileID: 532206105}
   <RotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+--- !u!114 &968604226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968604222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71752bf6d2bb8124a8b540e128b4236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GameManager>k__BackingField: {fileID: 2092546855}
+  <BulletPrefab>k__BackingField: {fileID: 2195421055853352094, guid: b2c344fdedc5029469197a5a3607a5a6, type: 3}
 --- !u!1 &1328211201
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +739,7 @@ GameObject:
   - component: {fileID: 1887205218}
   - component: {fileID: 1887205217}
   - component: {fileID: 1887205219}
+  - component: {fileID: 1887205220}
   m_Layer: 0
   m_Name: player_2
   m_TagString: Untagged
@@ -737,12 +759,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da67d65d8799cf45b3aa958284a825c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <player2>k__BackingField: 1
+  <player>k__BackingField: 1
   <moveAmount>k__BackingField: 1
   <forward>k__BackingField: {x: 0, y: 0, z: -1}
   <right>k__BackingField: {x: -1, y: 0, z: 0}
   <left>k__BackingField: {x: 1, y: 0, z: 0}
   <back>k__BackingField: {x: 0, y: 0, z: 1}
+  <OnMove>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1887205220}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: GenerateBubble
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1887205218
 Transform:
   m_ObjectHideFlags: 0
@@ -773,6 +810,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Camera>k__BackingField: {fileID: 911405334}
   <RotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+--- !u!114 &1887205220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887205216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71752bf6d2bb8124a8b540e128b4236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GameManager>k__BackingField: {fileID: 2092546855}
+  <BulletPrefab>k__BackingField: {fileID: 2195421055853352094, guid: b9b86c66c60d8604292f55c68e26e662, type: 3}
 --- !u!1 &1931027945
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +933,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931027945}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2092546854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092546856}
+  - component: {fileID: 2092546855}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2092546855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092546854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87da305284f4b534da2d2c189685879a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GameTime>k__BackingField: 30
+  <CurrentTimer>k__BackingField: 0
+  <CurrentGameState>k__BackingField: 0
+--- !u!4 &2092546856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092546854}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -891,3 +989,4 @@ SceneRoots:
   - {fileID: 911405337}
   - {fileID: 968604224}
   - {fileID: 1887205218}
+  - {fileID: 2092546856}

@@ -68,8 +68,12 @@ public class PlayerController : MonoBehaviour
             Move(right);
         }
     }
-    void Move(Vector3 direction){
-        Debug.Log($"{player} call Move");
+    void Move(Vector3 direction)
+    {
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+        Vector3 moveTarget = direction * moveAmount + transform.position;
+        Vector2 checkPosition = new Vector2(moveTarget.x, moveTarget.z);
+        if (gameManager.CheckMovable(checkPosition) == false) return;
         transform.position += direction * moveAmount;
         OnMove?.Invoke(new Vector2(transform.position.x, transform.position.z));
     }

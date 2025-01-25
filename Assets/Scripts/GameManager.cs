@@ -13,14 +13,19 @@ public class GameManager : MonoBehaviour
     }
     [field: SerializeField]
     public float GameTime { get; private set; }
+    [field: SerializeField]
+    public Vector2 FieldSize { get; private set; } = new Vector2(20, 20);
     [Header("遊戲資訊")]
     [field: SerializeField]
     public float CurrentTimer { get; private set; }
     [field: SerializeField]
     public GameState CurrentGameState { get; private set; }
-    public Dictionary<string, GameObject> BubbleGrid { get; private set; } = new();
+    private Dictionary<string, GameObject> bubbleGrid = new();
+    private Dictionary<string, GameObject> obstacleGrid = new();
+    private Boundary boundary;
     void Start()
     {
+        boundary = new Boundary(this, FieldSize);
         ChanageState(GameState.CountDown);
     }
     public void ChanageState(GameState state)
@@ -40,30 +45,44 @@ public class GameManager : MonoBehaviour
         }
         CurrentGameState = state;
     }
+    public bool CheckMovable(Vector2 position)
+    {
+        string key = position.ToString();
+        if (obstacleGrid.ContainsKey(key))
+        {
+            return false;
+        }
+        return true;
+    }
+    public void AddObstacle(GameObject obstacle, Vector2 position)
+    {
+        string key = position.ToString();
+        obstacleGrid.Add(key, obstacle);
+    }
     public void AddBubble(GameObject bubble, Vector2 position)
     {
         string key = position.ToString();
-        if (BubbleGrid.ContainsKey(key))
+        if (bubbleGrid.ContainsKey(key))
         {
-            if (BubbleGrid[key] != null)
+            if (bubbleGrid[key] != null)
             {
-                Destroy(BubbleGrid[key]);
+                Destroy(bubbleGrid[key]);
             }
             Debug.Log($"Remove Bubble {key}");
-            BubbleGrid.Remove(key);
+            bubbleGrid.Remove(key);
         }
-        BubbleGrid.Add(key, bubble);
+        bubbleGrid.Add(key, bubble);
     }
     public void RemoveBubble(Vector2 position)
     {
         string key = position.ToString();
-        if (BubbleGrid.ContainsKey(key))
+        if (bubbleGrid.ContainsKey(key))
         {
-            if (BubbleGrid[key] != null)
+            if (bubbleGrid[key] != null)
             {
-                Destroy(BubbleGrid[key]);
+                Destroy(bubbleGrid[key]);
             }
-            BubbleGrid.Remove(key);
+            bubbleGrid.Remove(key);
         }
     }
     void Update()

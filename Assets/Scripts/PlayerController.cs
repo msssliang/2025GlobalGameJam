@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
     [field: SerializeField]
-    public bool player2 { get; private set; }
+    public PlayerEnum player { get; private set; }
     [field: SerializeField]
     public float moveAmount { get; private set; }
     [field: SerializeField]
@@ -14,53 +16,61 @@ public class PlayerController : MonoBehaviour
     public Vector3 left { get; private set; }
     [field: SerializeField]
     public Vector3 back { get; private set; }
+    [field: SerializeField]
+    public UnityEvent<Vector2> OnMove { get; private set; }
     void Update()
     {
-        if (player2)
+        switch (player)
         {
-            player2Control();
-        }
-        else
-        {
-            player1Control();
+            case PlayerEnum.Player1:
+                player1Control();
+                break;
+            case PlayerEnum.Player2:
+                player2Control();
+                break;
         }
     }
     void player1Control()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            transform.position += forward * moveAmount;
+            Move(forward);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.position += back * moveAmount;
+            Move(back);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.position += left * moveAmount;
+            Move(left);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.position += right * moveAmount;
+            Move(right);
         }
     }
     void player2Control()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            transform.position += forward * moveAmount;
+            Move(forward);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            transform.position += back * moveAmount;
+            Move(back);
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            transform.position += left * moveAmount;
+            Move(left);
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            transform.position += right * moveAmount;
+            Move(right);
         }
+    }
+    void Move(Vector3 direction){
+        Debug.Log($"{player} call Move");
+        transform.position += direction * moveAmount;
+        OnMove?.Invoke(new Vector2(transform.position.x, transform.position.z));
     }
 }

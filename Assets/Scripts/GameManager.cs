@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public float CurrentTimer { get; private set; }
     [field: SerializeField]
     public GameState CurrentGameState { get; private set; }
+    public Dictionary<string, GameObject> BubbleGrid { get; private set; } = new();
     void Start()
     {
         ChanageState(GameState.CountDown);
@@ -37,6 +39,32 @@ public class GameManager : MonoBehaviour
                 break;
         }
         CurrentGameState = state;
+    }
+    public void AddBubble(GameObject bubble, Vector2 position)
+    {
+        string key = position.ToString();
+        if (BubbleGrid.ContainsKey(key))
+        {
+            if (BubbleGrid[key] != null)
+            {
+                Destroy(BubbleGrid[key]);
+            }
+            Debug.Log($"Remove Bubble {key}");
+            BubbleGrid.Remove(key);
+        }
+        BubbleGrid.Add(key, bubble);
+    }
+    public void RemoveBubble(Vector2 position)
+    {
+        string key = position.ToString();
+        if (BubbleGrid.ContainsKey(key))
+        {
+            if (BubbleGrid[key] != null)
+            {
+                Destroy(BubbleGrid[key]);
+            }
+            BubbleGrid.Remove(key);
+        }
     }
     void Update()
     {

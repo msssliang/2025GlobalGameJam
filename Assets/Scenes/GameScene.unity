@@ -963,6 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <GameTime>k__BackingField: 30
+  <FieldSize>k__BackingField: {x: 20, y: 20}
   <CurrentTimer>k__BackingField: 0
   <CurrentGameState>k__BackingField: 0
 --- !u!4 &2092546856

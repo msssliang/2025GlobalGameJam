@@ -7,7 +7,10 @@ public class StartGame : MonoBehaviour
     public Button startButton;
     public void OnStartButtonClicked()
     {
-        SceneManager.LoadScene("GameScene");
+        CrossScene.Instance.PlayCrossSceneAnimation(() =>
+        {
+            SceneManager.LoadSceneAsync("GameScene");
+        });
     }
     public void OnExitButtonClicked()
     {

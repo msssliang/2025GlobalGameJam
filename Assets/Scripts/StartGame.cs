@@ -1,29 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class StartGame : MonoBehaviour
 {
     public void OnStartButtonClicked()
     {
-        Invoke("LoadScene", 0.5f);
+        StartCoroutine(LoadScene());
     }
     public void OnExitButtonClicked()
     {
-        Invoke("Quit", 0.5f);       
+        StartCoroutine(Quit());
     }
-    
-    public void LoadScene() 
+
+    public IEnumerator LoadScene()
     {
-        SceneManager.LoadScene("GameScene");
         CrossScene.Instance.PlayCrossSceneAnimation(() =>
         {
             SceneManager.LoadSceneAsync("GameScene");
         });
+        yield return null;
     }
 
-    public void Quit()
+    public IEnumerator Quit()
     {
+        yield return new WaitForSeconds(0.5f);
         Application.Quit();
     }
 }

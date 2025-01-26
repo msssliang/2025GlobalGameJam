@@ -2,14 +2,10 @@ using UnityEngine;
 
 public class ContinuePlaySE : MonoBehaviour
 {
-    public AudioSource audioSource;
-    void Start()
-    {
-        DontDestroyOnLoad(this);
-    }
+    public AudioClip audioClip;
 
     public void OnButtonClicked()
     {
-        audioSource.Play();
+        AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position);
     }
 }

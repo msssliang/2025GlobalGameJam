@@ -21,6 +21,7 @@ public class CrossScene : MonoBehaviour
     }
     public void PlayCrossSceneAnimation(Action callback)
     {
+        animator.Rebind();
         animator.Play("Fade");
         StartCoroutine(WaitForAnimation(callback));
     }

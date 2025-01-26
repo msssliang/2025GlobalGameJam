@@ -4,15 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    public Button startButton;
     public void OnStartButtonClicked()
     {
+        Invoke("LoadScene", 0.5f);
+    }
+    public void OnExitButtonClicked()
+    {
+        Invoke("Quit", 0.5f);       
+    }
+    
+    public void LoadScene() 
+    {
+        SceneManager.LoadScene("GameScene");
         CrossScene.Instance.PlayCrossSceneAnimation(() =>
         {
             SceneManager.LoadSceneAsync("GameScene");
         });
     }
-    public void OnExitButtonClicked()
+
+    public void Quit()
     {
         Application.Quit();
     }

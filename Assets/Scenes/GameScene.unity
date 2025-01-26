@@ -5594,6 +5594,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   <Animator>k__BackingField: {fileID: 908950341}
+  <Particle>k__BackingField: {fileID: 6506051869353479603, guid: d32cde6e4944f944897424db251666a0, type: 3}
   audioSource: {fileID: 968604227}
 --- !u!4 &968604224
 Transform:
@@ -11717,6 +11718,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   <Animator>k__BackingField: {fileID: 852161651}
+  <Particle>k__BackingField: {fileID: 9215002342252347632, guid: 972b3e9377bfb67418662399c71a7834, type: 3}
   audioSource: {fileID: 1887205221}
 --- !u!4 &1887205218
 Transform:

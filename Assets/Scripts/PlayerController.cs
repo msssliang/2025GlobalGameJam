@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<Vector2> OnMove { get; private set; }
     [field: SerializeField]
     public Animator Animator { get; private set; }
+    [field: SerializeField]
+    public GameObject Particle { get; set; }
     public bool Controllable { get; set; } = false;
 
     public AudioSource audioSource;
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
         transform.position += direction * moveAmount;
         if (Controllable)
         {
+            Instantiate(Particle, transform.position, Quaternion.Euler(-90, 0, 0));
             OnMove?.Invoke(new Vector2(transform.position.x, transform.position.z));
         }
         pressTime = 0;
